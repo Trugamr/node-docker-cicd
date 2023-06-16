@@ -1,0 +1,19 @@
+name: Build app and publish docker image
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Build and publish
+        uses: docker/build-push-action@v4
+        with:
+          push: true
+          tags: ttl.sh/node-docker-cicd:latest
